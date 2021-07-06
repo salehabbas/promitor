@@ -80,8 +80,9 @@ namespace Promitor.Agents.ResourceDiscovery.Graph
                 {
                     ResultFormat = ResultFormat.Table
                 };
-                var queryRequest = new QueryRequest(targetSubscriptions, query, options: queryOptions);
-                return await graphClient.ResourcesAsync(queryRequest);
+                //var queryRequest = new QueryRequest(targetSubscriptions, query, options: queryOptions);
+                var f = new QueryRequest("Resources | distinct subscriptionId | project subscriptionId", options: queryOptions);
+                return await graphClient.ResourcesAsync(f);
             });
 
             return response;
